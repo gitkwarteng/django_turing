@@ -1,0 +1,33 @@
+{% extends 'base/layout.html' %}
+
+{% block title %}
+    Excel File upload
+{% endblock %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+    
+    <table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Tags</th>
+    </tr>
+    </thead>
+        {% for product in products %}
+            <tr>
+            <td>{{ product.id }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.tags }}</td>
+            </tr>        
+        {% endfor %}
+        
+    </table>
+{% endblock %}
